@@ -1,13 +1,13 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "dist/server.js",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
     "build": "rm -rf dist && tsc",
-    "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
-    "dev-dist": "cross-env NODE_ENV=development nodemon dist/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/server.ts",
+    "dev-dist": "cross-env NODE_ENV=development nodemon dist/server.js",
     "watch": "tsc -w",
     "lint": "eslint --ext .ts .",
     "start-db": "sudo service postgresql start"
