@@ -12,6 +12,7 @@ import {
   PORT,
   __prod__,
 } from './config/constants';
+import logger from './config/logger';
 import { User } from './entities/User';
 
 const main = async () => {
@@ -35,10 +36,10 @@ const main = async () => {
   app.use(cors());
 
   app.listen(PORT, () => {
-    console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}`);
+    logger.info(`Server running in ${process.env.NODE_ENV} on port ${PORT}`);
   });
 };
 
 main().catch((err) => {
-  console.error(err);
+  logger.error(err);
 });
