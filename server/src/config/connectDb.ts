@@ -1,5 +1,5 @@
 import { createConnection } from 'typeorm';
-import { User } from '../entities/User';
+import User from '../entities/User';
 import {
   DB_HOST,
   DB_NAME,
