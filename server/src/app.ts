@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import passport from 'passport';
 import connectDb from './config/connectDb';
-import { __prod__ } from './config/constants';
+import { SESSION_SECRET, __prod__ } from './config/constants';
 import configPassport from './config/passport';
 import indexRoutes from './routes/indexRoutes';
 
@@ -26,7 +26,7 @@ const ONE_DAY_MILLIS = 24 * 60 * 60 * 1000;
 
 app.use(
   session({
-    secret: 'balls',
+    secret: SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
     cookie: {

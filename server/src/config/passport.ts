@@ -1,6 +1,11 @@
 import passport from 'passport';
 import passportGoogle from 'passport-google-oauth20';
 import User from '../entities/User';
+import {
+  GOOGLE_CALLBACK_URL,
+  GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET,
+} from './constants';
 import logger from './logger';
 
 const GoogleStrategy = passportGoogle.Strategy;
@@ -9,9 +14,9 @@ const configPassport = () => {
   passport.use(
     new GoogleStrategy(
       {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: process.env.GOOGLE_CALLBACK_URL,
+        clientID: GOOGLE_CLIENT_ID,
+        clientSecret: GOOGLE_CLIENT_SECRET,
+        callbackURL: GOOGLE_CALLBACK_URL,
       },
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       async (_accessToken, _refreshToken, profile, done) => {
