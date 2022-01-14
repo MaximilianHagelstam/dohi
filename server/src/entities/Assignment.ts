@@ -3,28 +3,34 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import Assignment from './Assignment';
+import User from './User';
 
 @Entity()
-export default class User extends BaseEntity {
+export default class Assignment extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  googleId: string;
+  @Column()
+  title: string;
 
   @Column()
-  displayName: string;
+  description: string;
 
   @Column()
-  avatar: string;
+  class: string;
 
-  @OneToMany(() => Assignment, (assignment) => assignment.user)
-  assignments: Assignment[];
+  @Column()
+  dueDate: Date;
+
+  @Column()
+  userId: number;
+
+  @ManyToOne(() => User, (user) => user.assignments)
+  user: User;
 
   @CreateDateColumn()
   createdAt: Date;

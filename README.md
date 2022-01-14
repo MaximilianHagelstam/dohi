@@ -1,3 +1,3 @@
 # Dohi
 
-Book store
+Homework tracker
