@@ -3,6 +3,6 @@ import indexController from '../controllers/indexController';
 
 const indexRoutes = express.Router();
 
-indexRoutes.get('/ping', indexController.ping);
+indexRoutes.get('/', indexController.healthCheck);
 
 export default indexRoutes;
