@@ -7,6 +7,7 @@ import passport from 'passport';
 import connectDb from './config/connectDb';
 import { SESSION_SECRET, __prod__ } from './config/constants';
 import configPassport from './config/passport';
+import authRoutes from './routes/authRoutes';
 import indexRoutes from './routes/indexRoutes';
 
 void connectDb();
@@ -41,5 +42,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRoutes);
+app.use('/api/auth', authRoutes);
 
 export default app;
