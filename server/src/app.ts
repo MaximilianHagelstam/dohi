@@ -5,10 +5,11 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import passport from 'passport';
 import connectDb from './config/connectDb';
-import { SESSION_SECRET, __prod__ } from './config/constants';
+import { __prod__ } from './config/constants';
 import configPassport from './config/passport';
 import authRoutes from './routes/authRoutes';
 import indexRoutes from './routes/indexRoutes';
+import userRoutes from './routes/userRoutes';
 
 void connectDb();
 
@@ -27,7 +28,7 @@ const ONE_DAY_MILLIS = 24 * 60 * 60 * 1000;
 
 app.use(
   session({
-    secret: SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
     cookie: {
@@ -43,5 +44,6 @@ app.use(passport.session());
 
 app.use('/', indexRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 
 export default app;

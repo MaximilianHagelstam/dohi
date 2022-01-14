@@ -6,6 +6,5 @@
     "**/build": true,
     "**/yarn.lock": true,
     "**/logs": true
-  },
-  "eslint.workingDirectories": ["./server", "./client"]
+  }
 }
