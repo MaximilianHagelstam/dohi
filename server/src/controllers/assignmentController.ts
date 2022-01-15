@@ -50,7 +50,7 @@ const findById = async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
 
-    const assignment = await Assignment.find({
+    const assignment = await Assignment.findOne({
       where: { id, creatorId: req.user.id },
     });
 
@@ -60,4 +60,29 @@ const findById = async (req: Request, res: Response) => {
   }
 };
 
-export default { findAll, create, deleteById, findById };
+const update = async (req: Request, res: Response) => {
+  try {
+    const id = Number(req.params.id);
+    const { title, description, className } = req.body;
+
+    const assignment = await Assignment.findOne({
+      where: { id, creatorId: req.user.id },
+    });
+
+    if (assignment) {
+      const result = await Assignment.merge(assignment, {
+        title,
+        description,
+        className,
+      }).save();
+
+      res.status(204).json(result);
+    } else {
+      res.status(400).json({ message: `Assignment with id ${id} not found` });
+    }
+  } catch (err) {
+    logger.error(`Error updating assignment: ${err}`);
+  }
+};
+
+export default { findAll, create, deleteById, findById, update };
