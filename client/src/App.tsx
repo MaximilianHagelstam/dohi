@@ -1,5 +1,11 @@
-import Button from 'react-bootstrap/Button';
+import HomeworkCard from './components/HomeworkCard';
 
-const App = () => <Button>Penis</Button>;
+const App = () => (
+  <HomeworkCard
+    title={'James'}
+    description={'Do maths homework'}
+    className={'Maths'}
+  />
+);
 
 export default App;
