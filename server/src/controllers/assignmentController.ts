@@ -35,15 +35,29 @@ const deleteById = async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
 
-    const assignment = await Assignment.delete({
+    await Assignment.delete({
       id,
       creatorId: req.user.id,
     });
 
-    res.status(204).json(assignment);
+    res.status(204);
   } catch (err) {
     logger.error(`Error deleting assignment: ${err}`);
   }
 };
 
-export default { findAll, create, deleteById };
+const findById = async (req: Request, res: Response) => {
+  try {
+    const id = Number(req.params.id);
+
+    const assignment = await Assignment.find({
+      where: { id, creatorId: req.user.id },
+    });
+
+    res.json(assignment);
+  } catch (err) {
+    logger.error(`Error finding assignment: ${err}`);
+  }
+};
+
+export default { findAll, create, deleteById, findById };
