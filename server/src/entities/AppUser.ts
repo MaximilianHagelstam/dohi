@@ -10,7 +10,7 @@ import {
 import Assignment from './Assignment';
 
 @Entity()
-export default class User extends BaseEntity {
+export default class AppUser extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -23,7 +23,7 @@ export default class User extends BaseEntity {
   @Column()
   avatar: string;
 
-  @OneToMany(() => Assignment, (assignment) => assignment.user)
+  @OneToMany(() => Assignment, (assignment) => assignment.creator)
   assignments: Assignment[];
 
   @CreateDateColumn()

@@ -1,6 +1,6 @@
 import passport from 'passport';
 import passportGoogle from 'passport-google-oauth20';
-import User from '../entities/User';
+import AppUser from '../entities/AppUser';
 import logger from './logger';
 
 const GoogleStrategy = passportGoogle.Strategy;
@@ -15,19 +15,20 @@ const configPassport = () => {
       },
       async (_accessToken, _refreshToken, profile, done) => {
         try {
-          let user = await User.findOne({ googleId: profile.id });
+          let user = await AppUser.findOne({ googleId: profile.id });
 
           if (user) {
             done(null, user);
           } else {
-            user = new User();
-            user.googleId = profile.id;
-            user.displayName = profile.displayName;
-            user.avatar =
-              profile.photos === undefined
-                ? 'https://hds.hel.fi/static/assets/placeholders/user-image/user-image-l@2x.png'
-                : profile.photos[0].value;
-            await user.save();
+            user = await AppUser.create({
+              googleId: profile.id,
+              displayName: profile.displayName,
+              avatar:
+                profile.photos === undefined
+                  ? 'https://hds.hel.fi/static/assets/placeholders/user-image/user-image-l@2x.png'
+                  : profile.photos[0].value,
+            }).save();
+
             done(null, user);
           }
 
@@ -43,7 +44,7 @@ const configPassport = () => {
     done(null, user);
   });
 
-  passport.deserializeUser((user: User, done) => {
+  passport.deserializeUser((user: AppUser, done) => {
     done(null, user);
   });
 };

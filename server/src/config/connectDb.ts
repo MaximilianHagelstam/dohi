@@ -1,6 +1,6 @@
 import { createConnection } from 'typeorm';
+import AppUser from '../entities/AppUser';
 import Assignment from '../entities/Assignment';
-import User from '../entities/User';
 import {
   DB_HOST,
   DB_NAME,
@@ -22,7 +22,7 @@ const connectDb = async () => {
       password: DB_PASSWORD,
       logging: !__prod__,
       synchronize: !__prod__,
-      entities: [User, Assignment],
+      entities: [AppUser, Assignment],
     });
 
     logger.info(`Connected to database ${DB_NAME}`);

@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import User from './User';
+import AppUser from './AppUser';
 
 @Entity()
 export default class Assignment extends BaseEntity {
@@ -21,16 +21,13 @@ export default class Assignment extends BaseEntity {
   description: string;
 
   @Column()
-  class: string;
+  className: string;
 
   @Column()
-  dueDate: Date;
+  creatorId: number;
 
-  @Column()
-  userId: number;
-
-  @ManyToOne(() => User, (user) => user.assignments)
-  user: User;
+  @ManyToOne(() => AppUser, (appUser) => appUser.assignments)
+  creator: AppUser;
 
   @CreateDateColumn()
   createdAt: Date;

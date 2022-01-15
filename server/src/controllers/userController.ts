@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import logger from '../config/logger';
-import User from '../entities/User';
+import AppUser from '../entities/AppUser';
 
 const getCurrentUser = async (req: Request, res: Response) => {
   try {
     if (req.user) {
-      const user = await User.findOne({ googleId: req.user.googleId });
+      const user = await AppUser.findOne({ googleId: req.user.googleId });
       res.json(user);
     } else {
       res.status(401).json({

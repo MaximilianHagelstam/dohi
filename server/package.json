@@ -32,6 +32,7 @@
     "passport": "^0.5.2",
     "passport-google-oauth20": "^2.0.0",
     "pg": "^8.7.1",
+    "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.41",
     "winston": "^3.4.0"
   }

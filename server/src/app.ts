@@ -4,9 +4,11 @@ import session from 'express-session';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import passport from 'passport';
+import 'reflect-metadata';
 import connectDb from './config/connectDb';
 import { __prod__ } from './config/constants';
 import configPassport from './config/passport';
+import assignmentRoutes from './routes/assignmentRoutes';
 import authRoutes from './routes/authRoutes';
 import indexRoutes from './routes/indexRoutes';
 import userRoutes from './routes/userRoutes';
@@ -29,8 +31,8 @@ const ONE_DAY_MILLIS = 24 * 60 * 60 * 1000;
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
+    resave: __prod__,
+    saveUninitialized: __prod__,
     cookie: {
       sameSite: __prod__ ? 'none' : 'lax',
       secure: __prod__,
@@ -45,5 +47,6 @@ app.use(passport.session());
 app.use('/', indexRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/assignment', assignmentRoutes);
 
 export default app;
