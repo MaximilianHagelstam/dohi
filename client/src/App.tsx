@@ -3,7 +3,7 @@ import MyNavbar from './components/Navbar';
 
 const App = () => (
   <>
-    <MyNavbar />
+    <MyNavbar name={'James'} />
     <HomeworkCard
       title={'James'}
       description={'Do maths homework'}
