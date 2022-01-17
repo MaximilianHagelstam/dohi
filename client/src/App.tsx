@@ -1,4 +1,4 @@
-import { Container, Stack } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import HomeworkCard from './components/HomeworkCard';
 import MyNavbar from './components/Navbar';
 
@@ -10,25 +10,15 @@ const App = () => (
       <h1>Assignments</h1>
     </Container>
 
-    <Stack gap={4} className="col-md-5 mx-auto" direction="horizontal">
-      <HomeworkCard
-        title={'James'}
-        description={'Do maths homework'}
-        className={'Maths'}
-      />
-
-      <HomeworkCard
-        title={'James'}
-        description={'Do maths homework'}
-        className={'Maths'}
-      />
-
-      <HomeworkCard
-        title={'James'}
-        description={'Do maths homework'}
-        className={'Maths'}
-      />
-    </Stack>
+    <div className="flex-fix">
+      <div className="d-flex flex-wrap justify-content-center mx-auto w-75">
+        <HomeworkCard
+          title={'James'}
+          description={'Do maths homework'}
+          className={'Maths'}
+        />
+      </div>
+    </div>
   </>
 );
 
