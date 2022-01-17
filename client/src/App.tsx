@@ -6,7 +6,7 @@ const App = () => (
   <>
     <MyNavbar name={'James'} />
 
-    <Container className="mx-auto mb-4 " style={{ textAlign: 'center' }}>
+    <Container className="mx-auto mb-4" style={{ textAlign: 'center' }}>
       <h1>Assignments</h1>
     </Container>
 
