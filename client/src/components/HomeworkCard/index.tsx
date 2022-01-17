@@ -8,7 +8,7 @@ interface IProps {
 
 const HomeworkCard = ({ title, description, className }: IProps) => {
   return (
-    <Card style={{ width: '18rem' }} className="mb-2">
+    <Card style={{ width: '18rem' }} className="mx-auto">
       <Card.Header>{className}</Card.Header>
       <Card.Body>
         <Card.Title>{title}</Card.Title>
