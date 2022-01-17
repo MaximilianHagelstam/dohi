@@ -13,7 +13,8 @@ const HomeworkCard = ({ title, description, className }: IProps) => {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>
-        <Button variant="success">Done</Button>
+        <Button variant="secondary">Edit</Button>{' '}
+        <Button variant="outline-danger">Delete</Button>
       </Card.Body>
     </Card>
   );
