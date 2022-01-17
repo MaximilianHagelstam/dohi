@@ -16,7 +16,7 @@ const MyNavbar = ({ name }: IProps) => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           />
-          <Button variant="outline-success" className="mx-2">
+          <Button variant="success" className="mx-2">
             Add
           </Button>
           <Button variant="outline-danger">Logout</Button>
