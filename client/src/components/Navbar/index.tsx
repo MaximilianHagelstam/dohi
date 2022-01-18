@@ -19,7 +19,17 @@ const MyNavbar = ({ name }: IProps) => {
           <Button variant="success" className="mx-2">
             Add
           </Button>
-          <Button variant="outline-danger">Logout</Button>
+          <Button
+            variant="outline-danger"
+            onClick={() => {
+              window.open(
+                `${process.env.REACT_APP_API_URL}/api/auth/logout`,
+                '_self'
+              );
+            }}
+          >
+            Logout
+          </Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
