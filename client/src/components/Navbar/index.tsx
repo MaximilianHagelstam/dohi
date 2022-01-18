@@ -1,4 +1,5 @@
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import AddButton from './AddButton';
 
 interface IProps {
   name: string;
@@ -16,9 +17,7 @@ const MyNavbar = ({ name }: IProps) => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           />
-          <Button variant="success" className="mx-2">
-            Add
-          </Button>
+          <AddButton />
           <Button
             variant="outline-danger"
             onClick={() => {
