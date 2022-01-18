@@ -1,13 +1,24 @@
 import { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
+import AssignmentService from '../../services/AssignmentService';
 
 const AddButton = () => {
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [className, setClassName] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleSubmit = () => {
-    console.log('penis');
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    setLoading(true);
+    await AssignmentService.add(title, description, className);
+
+    setLoading(false);
+    setShow(false);
   };
 
   return (
@@ -24,7 +35,11 @@ const AddButton = () => {
           <Form>
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Title</Form.Label>
-              <Form.Control type="text" placeholder="WWII Essay" />
+              <Form.Control
+                type="text"
+                placeholder="WWII Essay"
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -32,12 +47,17 @@ const AddButton = () => {
               <Form.Control
                 type="text"
                 placeholder="Finnish essay about WWII"
+                onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Class</Form.Label>
-              <Form.Control type="text" placeholder="HI4.2" />
+              <Form.Control
+                type="text"
+                placeholder="HI4.2"
+                onChange={(e) => setClassName(e.target.value)}
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -45,8 +65,13 @@ const AddButton = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="success" onClick={handleSubmit} type="submit">
-            Submit
+          <Button
+            variant="success"
+            onClick={handleSubmit}
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? 'Loading…' : 'Submit'}
           </Button>
         </Modal.Footer>
       </Modal>
