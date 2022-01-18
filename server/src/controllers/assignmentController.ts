@@ -6,6 +6,7 @@ const findAll = async (req: Request, res: Response) => {
   try {
     const assignments = await Assignment.find({
       where: { creatorId: req.user.id },
+      order: { createdAt: 'ASC' },
     });
 
     res.json(assignments);
