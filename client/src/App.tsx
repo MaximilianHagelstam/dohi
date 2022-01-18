@@ -17,10 +17,10 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
       const currentUser = await UserService.getCurrentUser();
 
       if (currentUser) {
+        setLoading(true);
         const res = await AssignmentService.get();
         setAssignments(res);
         setUser(currentUser);

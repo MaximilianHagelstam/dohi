@@ -35,12 +35,12 @@ const deleteById = async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
 
-    await Assignment.delete({
+    const assignment = await Assignment.delete({
       id,
       creatorId: req.user.id,
     });
 
-    res.status(204);
+    res.status(204).json(assignment);
   } catch (err) {
     logger.error(`Error deleting assignment: ${err}`);
   }
