@@ -19,6 +19,7 @@ const AddButton = () => {
 
     setLoading(false);
     setShow(false);
+    window.location.reload();
   };
 
   return (

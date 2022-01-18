@@ -27,6 +27,22 @@ const AssignmentService = {
       console.error(err);
     }
   },
+  get: async () => {
+    try {
+      const { data } = await axios.get(`${BASE_URL}/api/assignment`, {
+        withCredentials: true,
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Credentials': true,
+        },
+      });
+
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
+  },
 };
 
 export default AssignmentService;

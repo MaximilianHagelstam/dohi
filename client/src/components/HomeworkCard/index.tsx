@@ -1,12 +1,15 @@
 import { Button, Card } from 'react-bootstrap';
+import IAssignment from '../../interfaces/IAssignment';
 
-interface IProps {
-  title: string;
-  description: string;
-  className: string;
-}
-
-const HomeworkCard = ({ title, description, className }: IProps) => {
+const HomeworkCard = ({
+  id,
+  title,
+  description,
+  className,
+  creatorId,
+  createdAt,
+  updatedAt,
+}: IAssignment) => {
   return (
     <Card style={{ width: '18rem' }} className="shadow-sm m-2">
       <Card.Header>{className}</Card.Header>
