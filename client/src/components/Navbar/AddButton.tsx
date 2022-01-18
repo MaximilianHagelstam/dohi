@@ -33,48 +33,39 @@ const AddButton = () => {
           <Modal.Title>Add assignment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Title</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="WWII Essay"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="description">
               <Form.Label>Description</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="Finnish essay about WWII"
                 onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="class">
               <Form.Label>Class</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="HI4.2"
                 onChange={(e) => setClassName(e.target.value)}
               />
             </Form.Group>
+            <Button type="submit" variant="success" disabled={loading}>
+              {loading ? 'Loading…' : 'Submit'}
+            </Button>{' '}
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button
-            variant="success"
-            onClick={handleSubmit}
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? 'Loading…' : 'Submit'}
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
