@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import HomeworkCard from './components/HomeworkCard';
+import Loading from './components/Loading';
 import Login from './components/Login';
+import './components/Login/Login.css';
 import MyNavbar from './components/Navbar';
 import IAssignment from './interfaces/IAssignment';
 import IUser from './interfaces/IUser';
@@ -29,33 +31,42 @@ const App = () => {
 
   return (
     <>
-      {user ? (
-        <>
-          <MyNavbar name={user.displayName} />
-
-          <Container className="mx-auto mb-4" style={{ textAlign: 'center' }}>
-            <h1>Assignments</h1>
-          </Container>
-
-          <div className="flex-fix">
-            <div className="d-flex flex-wrap justify-content-center mx-auto w-75">
-              {assignments.map((assignment) => (
-                <HomeworkCard
-                  title={assignment.title}
-                  description={assignment.description}
-                  className={assignment.className}
-                  id={assignment.id}
-                  creatorId={assignment.creatorId}
-                  createdAt={assignment.createdAt}
-                  updatedAt={assignment.updatedAt}
-                  key={assignment.id}
-                />
-              ))}
-            </div>
-          </div>
-        </>
+      {loading ? (
+        <Loading />
       ) : (
-        <Login />
+        <>
+          {user ? (
+            <>
+              <MyNavbar name={user.displayName} />
+
+              <Container
+                className="mx-auto mb-4"
+                style={{ textAlign: 'center' }}
+              >
+                <h1>Assignments</h1>
+              </Container>
+
+              <div className="flex-fix">
+                <div className="d-flex flex-wrap justify-content-center mx-auto w-75">
+                  {assignments.map((assignment) => (
+                    <HomeworkCard
+                      title={assignment.title}
+                      description={assignment.description}
+                      className={assignment.className}
+                      id={assignment.id}
+                      creatorId={assignment.creatorId}
+                      createdAt={assignment.createdAt}
+                      updatedAt={assignment.updatedAt}
+                      key={assignment.id}
+                    />
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <Login />
+          )}
+        </>
       )}
     </>
   );
