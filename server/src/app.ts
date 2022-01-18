@@ -22,7 +22,12 @@ const app = express();
 app.use(express.json());
 app.use(morgan('tiny'));
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
 
 app.set('trust proxy', 1);
 
