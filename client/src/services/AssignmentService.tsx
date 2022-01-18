@@ -60,6 +60,35 @@ const AssignmentService = {
       console.error(err);
     }
   },
+  update: async (
+    id: number,
+    title: string,
+    description: string,
+    className: string
+  ) => {
+    try {
+      const { data } = await axios.put(
+        `${BASE_URL}/api/assignment/${id}`,
+        {
+          title,
+          description,
+          className,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': true,
+          },
+        }
+      );
+
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
+  },
 };
 
 export default AssignmentService;
