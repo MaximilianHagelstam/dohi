@@ -23,10 +23,6 @@ const configPassport = () => {
             user = await AppUser.create({
               googleId: profile.id,
               displayName: profile.displayName,
-              avatar:
-                profile.photos === undefined
-                  ? 'https://hds.hel.fi/static/assets/placeholders/user-image/user-image-l@2x.png'
-                  : profile.photos[0].value,
             }).save();
 
             done(null, user);

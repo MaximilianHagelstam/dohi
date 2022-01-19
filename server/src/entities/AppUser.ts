@@ -20,9 +20,6 @@ export default class AppUser extends BaseEntity {
   @Column()
   displayName: string;
 
-  @Column()
-  avatar: string;
-
   @OneToMany(() => Assignment, (assignment) => assignment.creator)
   assignments: Assignment[];
 

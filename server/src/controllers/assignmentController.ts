@@ -47,20 +47,6 @@ const deleteById = async (req: Request, res: Response) => {
   }
 };
 
-const findById = async (req: Request, res: Response) => {
-  try {
-    const id = Number(req.params.id);
-
-    const assignment = await Assignment.findOne({
-      where: { id, creatorId: req.user.id },
-    });
-
-    res.json(assignment);
-  } catch (err) {
-    logger.error(`Error finding assignment: ${err}`);
-  }
-};
-
 const update = async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
@@ -86,4 +72,4 @@ const update = async (req: Request, res: Response) => {
   }
 };
 
-export default { findAll, create, deleteById, findById, update };
+export default { findAll, create, deleteById, update };
