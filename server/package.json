@@ -4,8 +4,9 @@
   "main": "dist/server.js",
   "license": "MIT",
   "scripts": {
+    "start-prod": "node dist/server.js",
+    "build": "tsc",
     "start": "cross-env NODE_ENV=production node dist/server.js",
-    "build": "rm -rf dist && tsc",
     "dev": "cross-env NODE_ENV=development nodemon dist/server.js",
     "watch": "tsc -w",
     "start-db": "sudo service postgresql start"

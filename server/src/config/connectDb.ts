@@ -1,31 +1,19 @@
 import { createConnection } from 'typeorm';
 import AppUser from '../entities/AppUser';
 import Assignment from '../entities/Assignment';
-import {
-  DB_HOST,
-  DB_NAME,
-  DB_PASSWORD,
-  DB_PORT,
-  DB_USERNAME,
-  __prod__,
-} from './constants';
+import { DB_URL, __prod__ } from './constants';
 import logger from './logger';
 
 const connectDb = async () => {
   try {
     await createConnection({
       type: 'postgres',
-      host: DB_HOST,
-      port: DB_PORT,
-      database: DB_NAME,
-      username: DB_USERNAME,
-      password: DB_PASSWORD,
+      url: DB_URL,
       logging: !__prod__,
       synchronize: !__prod__,
       entities: [AppUser, Assignment],
     });
-
-    logger.info(`Connected to database ${DB_NAME}`);
+    logger.info('Connected to database');
   } catch (err) {
     logger.error(`Error connecting to db: ${err}`);
   }
