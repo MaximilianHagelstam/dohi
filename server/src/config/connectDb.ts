@@ -9,8 +9,9 @@ const connectDb = async () => {
     await createConnection({
       type: 'postgres',
       url: DB_URL,
-      logging: !__prod__,
       synchronize: true,
+      logging: !__prod__,
+      ssl: __prod__,
       entities: [AppUser, Assignment],
     });
     logger.info('Connected to database');
