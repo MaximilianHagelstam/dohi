@@ -11,7 +11,9 @@ const connectDb = async () => {
       url: DB_URL,
       synchronize: true,
       logging: !__prod__,
-      ssl: __prod__,
+      ssl: {
+        rejectUnauthorized: false,
+      },
       entities: [AppUser, Assignment],
     });
     logger.info('Connected to database');
