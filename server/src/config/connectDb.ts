@@ -10,7 +10,7 @@ const connectDb = async () => {
       type: 'postgres',
       url: DB_URL,
       logging: !__prod__,
-      synchronize: !__prod__,
+      synchronize: true,
       entities: [AppUser, Assignment],
     });
     logger.info('Connected to database');
