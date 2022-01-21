@@ -68,7 +68,7 @@ yarn start
 - PostgreSQL
 - TypeORM
 - Passport.js
-- React.js
+- React
 - react-bootstrap
 
 ## License
